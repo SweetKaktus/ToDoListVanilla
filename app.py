@@ -1,0 +1,1 @@
+''' Ce fichier gère le fonctionnement de l'app '''
