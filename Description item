@@ -1,0 +1,13 @@
+Attributs d'un item
+
+name
+is_checked
+
+Toute la gestion des paths
+
+
+Fonctions
+
+Créer un item => choix nom ; par défaut is_checked = False
+Supprimer un item => Est-ce que doit se faire ici ou plutôt dans une classe list ?
+Cocher / Décocher un item => Modifie la valeur de is_checked par !is_checked (is_checked = not is_checked)

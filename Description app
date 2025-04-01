@@ -1,0 +1,19 @@
+App doit gérer toutes les actions utilisateur et accéder aux fonctions des classes item et lste.
+Ces fonctions ne peuvent pas être trigger directement par l'user.
+
+Fonctions :
+Ajouter liste
+Supprimer liste
+Afficher liste
+Changer de liste
+Sélectionner liste (peut être trigger par les autres fonctions, comme Ajouter ; Afficher ; Changer)
+Ajouter item
+Supprimer item
+Modifier item
+Cocher item
+Afficher items de liste sélectionnée
+Mettre à jour affichage (unchecked ; checked)
+
+Attributs :
+current liste
+Toute la gestion des paths
