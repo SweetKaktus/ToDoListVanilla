@@ -1,0 +1,177 @@
+I. Ecran dans une liste
+
+===========
+TO DO LIST
+===========
+List : XXXXXX
+
+To do:
+    1. [] blablabla
+    2. [] blablabla
+    3. [] blablabla
+    4. [] blablabla
+    5. [] blablabla
+
+Done:
+    1. [X] blablablabla
+    2. [X] blablablabla
+    3. [X] blablablabla
+    4. [X] blablablabla
+    5. [X] blablablabla
+
+1. Check a task
+2. Uncheck a task
+3. Add a task
+4. Delete task to do
+5. Change list
+
+
+II. Ecran Sélection de listes:
+
+===========
+TO DO LIST
+===========
+
+Lists:
+    1. Liste1
+    2. Liste2
+    3. Liste3
+    4. Liste4
+    5. Liste5
+
+1. Select list
+2. Add list
+3. Delete list
+
+=======================================================
+
+Réflexions:
+
+Les listes sont sauvegardées dans un json de listes sous la forme de dictionnaires
+Clé = un nom
+Valeur = un Dictionnaire
+    clé1 = 'To Do' : value = [tâches]
+    clé2 = 'Done' : value = [tâches]
+
+A quoi doit ressembler le json:
+
+{
+    'Liste1' : {
+                    'To do' : [tache1, tache2, tache3],
+                    'Done' : [tache4, tache5, tache6],
+               },
+    'Liste2' : {
+                    'To do' : [tache1, tache2, tache3],
+                    'Done' : [tache4, tache5, tache6],
+               },
+    ...
+}
+
+
+Mon application au lancement vient récupérer les infos du json puis crée les objets suivants
+
+listes_enregistrées = []
+i = 1
+
+for liste in json:
+    l = Liste(f'{liste.clé}')
+    l.tasks_to_do = liste.['To Do']
+    l.tasks_done = liste.['Done']
+    listes_enregistrées.append(l)
+    i += 1
+
+Donc là avec cet algo j'ai un objet "listes_enregistrées" qui contient mes objets 'Liste' qui eux-même ont un nom,
+une liste de 'tasks_to_do' et une liste de 'tasks_done'.
+
+Ensuite je veux que mon programme affiche mon 'II.' puis que l'user puisse saisir un nombre entre 1 et 3 pour déclencher une action
+    Action 1, l'user souhaite sélectionner une liste:
+        'Saisissez le numéro correspondant à la liste'
+            number = numero saisit
+            for index, element in enumerate(listes_enregistrées):
+                if number == index + 1:
+                    liste_focus = element
+                else:
+                    Le numéro de la liste est incorrect, on revient au 'II.'
+            ensuite je bascule sur le 'I.' et je vais principalement me servir de 'liste_focus'
+
+    Action 2, l'user souhaite ajouter une liste:
+        On demande de saisir un nom qu'on conserve dans une var 'name':
+            listes_enregistrées.append(Liste(name))
+            Ensuite on bascule sur l'écran 'I.' avec liste_focus = listes_enregistrées[-1]
+
+    Action 3, l'user souhaite supprimer une liste:
+        'Saisissez le numéro correspondant à la liste'
+            number = numéro saisit
+            for index, element in enumerate(listes_enregistrées):
+                if number == index + 1:
+                    listes_enregistrées.pop(index)
+            On revient au 'II.'
+
+Lorsqu'on affiche le 'I.'
+    Je prends ma variable 'liste_focus' qui est un objet 'Liste'
+    les variables que j'ai à disposition: 'liste.name' ; 'liste.tasks_to_do' ; 'liste.tasks_done'
+
+
+    Ensuite je veux créer une str 'to_do_list' = f'TO DO:\r    1. [] {liste.tasks_to_do[0]}\r    2. [] {liste.tasks_to_do[1]}\r    3. [] {liste.tasks_to_do[2]}\r ...'
+    Puis je veux créer une str 'done_liste' = f'DONE:\r    1. [] {liste.tasks_done[0]}\r    2. [] {liste.tasks_done[1]}\r    3. [] {liste.tasks_done[2]}\r ...'
+
+    Ensuite je veux afficher 'liste.name' sans les 2 premiers chiffres, puis afficher to_do_list, puis done_liste
+
+    Puis afficher les choix du 'I.'
+
+    Puis demander à l'user de faire un choix
+
+    Action 1, check un element de 'TO DO':
+        'indiquez le n° de la tâche à cocher':
+            number = input()
+        for index, element in enumerate(to_do_list):
+            if number == index+1:
+                done_liste.append(element)
+                to_do_list.remove(element)
+            else:
+                'Le numéro est incorrect' puis on revient au 'I.'
+        Sauvegarder la 'liste_focus' à la place de la même liste dans listes_enregistrées :
+            Option possible:
+                listes_enregistrées.remove(liste_focus)
+                listes_enregistrées.append(liste_focus)
+
+    Action 2, Décocher un élément de 'DONE':
+        'indiquez le N° del a tâche à décocher':
+            number = input()
+        for index, element in enumerate(done_liste):
+            if number == index+1:
+                to_do_list.append(element)
+                done_liste.remove(element)
+            else:
+                'Le numéro est incorrect' puis on revient au 'I.'
+        Sauvegarder la 'liste_focus' à la place de la même liste dans listes_enregistrées :
+            Option possible:
+                listes_enregistrées.remove(liste_focus)
+                listes_enregistrées.append(liste_focus)
+
+    Action 3, Ajouter une tâche:
+        Indiquez le nom de la tâche
+        Le nom de la tache est ajoutée à 'liste.tasks_to_do' puis on revient au 'I.' (liste.tasks_to_do.append(tache)
+        Sauvegarder la 'liste_focus' à la place de la même liste dans listes_enregistrées :
+            Option possible:
+                listes_enregistrées.remove(liste_focus)
+                listes_enregistrées.append(liste_focus)
+
+    Action 4, Supprimer une tâche non cochée:
+        'Indiquez le N° de la tâche non cochée à supprimer'
+            number = input()
+        for index, element in enumerate(to_do_list):
+            if number == index+1:
+                to_do_list.remove(element)
+            else:
+                'Le numéro est incorrect' puis on revient au 'I.'
+        Sauvegarder la 'liste_focus' à la place de la même liste dans listes_enregistrées :
+            Option possible:
+                listes_enregistrées.remove(liste_focus)
+                listes_enregistrées.append(liste_focus)
+    Action 5. Revenir à la sélection de liste
+    Sauvegarder la 'liste_focus' à la place de la même liste dans listes_enregistrées :
+            Option possible:
+                listes_enregistrées.remove(liste_focus)
+                listes_enregistrées.append(liste_focus)
+    Afficher 'II.'
