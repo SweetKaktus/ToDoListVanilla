@@ -1,22 +1,9 @@
-{
-    "Taches du jour": {
-        "TO DO": [
-            "Manger un croissant",
-            "Passer le balai"
-        ],
-        "DONE": [
-            "Acheter des yaourts",
-            "Faire la vaisselle"
-        ]
-    },
-    "Taches pro": {
-        "TO DO": [
-            "traiter alertes",
-            "traiter tickets"
-        ],
-        "DONE": [
-            "comm client",
-            "factu"
-        ]
-    }
-}
+[
+    [
+        "Plier le linge",
+        "Faire la vaiselle"
+    ],
+    [
+        "Ranger les courses"
+    ]
+]
