@@ -1,0 +1,72 @@
+Etant donné qu'il s'agit d'un dév que je vais faire uniquement en 'vanilla' et que plus tard je vais faire une app avec
+interface graphique, je vais réduire ce projet console en faisant juste une liste de tâches qu'on peut ajouter ou enlever
+puis avec sauvegarde dans un fichier json.
+
+
+Je dois quand même avoir 2 listes, une 'to do' et une 'done'
+
+Charger les données
+Afficher les données
+Interroger l'user
+Actions possibles:
+    - Ajouter une tache (qui s'ajoute dans 'To Do')
+    - Supprimer une tâche déjà effectuée (prend le numéro associé à la tache)
+    - Cocher une tache (prend le numéro associé à la tache)
+    - Décocher une tache (prend le numéro associé à la tache)
+    - Sauvegarder les données
+    - Supprimer toutes les taches
+
+Une fois l'action effectuer on recommence la boucle (Afficher les données ; Interroger l'user)
+
+
+J'ai besoin d'une fonction qui charge les données a partir du json pour les stocker dans une variable du script
+J'ai besoin d'une fonction qui boucle sur le second élément de whole_lists avec un enumerate() pour supprimer une tâche avec son N°
+J'ai besoin d'une fonction qui retire un élément de l'élément 0 de whole_lists pour l'ajouter à l'élément 1 de whole_lists
+J'ai besoin d'une fonction qui retire un élément de l'élément 1 de whole_lists pour l'ajouter à l'élément 0 de whole_lists
+J'ai besoin d'une fonction qui dump les données dans le JSON
+J'ai besoin d'une fonction qui reset 'whole_lists' pour que ce soit égal à = [[],[]]
+
+J'ai besoin d'une fonction qui affiche les données
+J'ai besoin d'une fonction qui à partir de l'input de l'user choisit une fonction à effectuer
+J'ai besoin d'une fonction qui à partir de l'input de l'user sélectionne une tâche => à utiliser pour Supprimer / Cocher / Décocher, en entrée, cela doit prendre
+soit l'élément whole_lists[0] soit l'élément whole_lists[1] et après boucler dessus pour faire le focus, puis passer l'élément aux fonctions de suppression / coche
+/ décoche
+
+===========
+TO DO LIST
+===========
+
+TO DO :
+
+0. [] Ranger le linge
+1. [] Faire la vaisselle
+2. [] Passer le balai
+
+DONE :
+
+0. [X] Sortir le chien
+1. [X] Jeter les poubelles
+2. [X] Emmener les enfants a l'ecole
+
+
+
+
+print('=' * 11)
+print('TO DO LIST')
+print('=' * 11)
+print('\r' * 2)
+
+
+print('TO DO :')
+print('\r' * 2)
+
+for index, task in enumerate(lists[0]):
+    print(f"{index}. [] {task}")
+
+
+print('DONE :')
+print('\r' * 2)
+
+for index, task in enumerate(lists[1]):
+    print(f"{index}. [] {task}")
+
